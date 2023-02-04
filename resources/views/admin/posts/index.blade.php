@@ -8,7 +8,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Titile</th>
-                    <th scope="col">Azioni</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,13 +18,13 @@
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->title }}</td>
                         <td>
-                            <a href="{{ route('admin.posts.show', ['post' => $post]) }}" class="btn btn-primary">Visita</a>
+                            <a href="{{ route('admin.posts.show', ['post' => $post]) }}" class="btn btn-primary">More</a>
                         </td>
                         <td>
-                            <a href="{{ route('admin.posts.edit', ['post' => $post]) }}" class="btn btn-warning">Edita</a>
+                            <a href="{{ route('admin.posts.edit', ['post' => $post]) }}" class="btn btn-warning">Edit</a>
                         </td>
                         <td>
-                            <button class="btn btn-danger btn-delete-me" data-id="{{ $post->id }}">Elimina</button>
+                            <button class="btn btn-danger btn-delete-me" data-id="{{ $post->id }}">Delete</button>
                         </td>
                     </tr>
                 @endforeach
