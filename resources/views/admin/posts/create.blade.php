@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('admin.posts.store') }}" method="post" class="row g-3 needs-validation" novalidate>
+        <form action="{{ route('admin.posts.store') }}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
             @csrf
                 <div class="mb-3">
                   <label for="title" class="form-label">Titolo</label>
@@ -33,6 +33,24 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="category" class="form-label">Categoria</label>
+                    <select class="form-select @error('category_id') is-invalid @enderror" required aria-label="select example" id="category" name="category_id">
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    <div class="invalid-feedback">
+                        @error('category_id')
+                            <ul>
+                                @foreach ($errors->get('category_id') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="mb-3">
                   <label for="image" class="form-label">URL Immagine</label>
                   <input type="url" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') }}">
                   <div class="invalid-feedback">
@@ -44,6 +62,20 @@
                         </ul>
                     @enderror
                   </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="uploaded_img" class="form-label">Image</label>
+                    <input class="form-control @error('uploaded_img') is-invalid @enderror" type="file" id="uploaded_img" name="uploaded_img">
+                    <div class="invalid-feedback">
+                        @error('uploaded_img')
+                            <ul>
+                                @foreach ($errors->get('uploaded_img') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="mb-3">

@@ -48,6 +48,24 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="uploaded_img" class="form-label">Image</label>
+                    <input class="form-control @error('uploaded_img') is-invalid @enderror" type="file" id="uploaded_img" name="uploaded_img">
+                    <div class="invalid-feedback">
+                        @error('uploaded_img')
+                            <ul>
+                                @foreach ($errors->get('uploaded_img') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <img src="{{ asset('storage/' . $post->uploaded_img) }}" alt="{{ $post->title }}">
+                    </div>
+                </div>
+
+                <div class="mb-3">
                   <label for="content" class="form-label">Contenuto</label>
                   <textarea type="text" class="form-control @error('content') is-invalid @enderror" id="content" name="content">{{ old('content', $post->content) }}</textarea>
                   <div class="invalid-feedback">
