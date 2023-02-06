@@ -1,5 +1,6 @@
 <?php
 
+use App\Tag;
 use App\Post;
 use App\Category;
 use Illuminate\Http\File;
@@ -22,6 +23,9 @@ class PostSeeder extends Seeder
         ];
 
         $categories = Category::all('id')->all();
+        $tags = Tag::all()->pluck('id');
+        $tagCount = count($tags);
+        
         for ($i = 0; $i < 100; $i++) {
             $title = $faker->words(rand(3, 7), true);
 
@@ -34,7 +38,7 @@ class PostSeeder extends Seeder
                 $img_path = null;
             }
 
-            Post::create([
+            $post = Post::create([
                 'category_id' => $faker->randomElement($categories)->id,
                 'slug'      => Post::getSlug($title),
                 'title'     => $title,
@@ -43,6 +47,8 @@ class PostSeeder extends Seeder
                 'content'   => $faker->paragraphs(rand(1, 10), true),
                 'excerpt'   => $faker->paragraph(),
             ]);
+
+            $post->tags()->attach($faker->randomElements($tags, rand(0, ($tagCount > 10) ? 10 : $tagCount)));
         }
     }
 }

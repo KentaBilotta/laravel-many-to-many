@@ -14,6 +14,7 @@
                     <th scope="col">Slug</th>
                     <th scope="col">Titile</th>
                     <th scope="col">Category</th>
+                    <th scope="col">Tags</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -24,6 +25,11 @@
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->category->name ?? '' }}</td>
+                        <td>
+                            @foreach ($post->tags as $tag)
+                                {{ $tag->name }}{{ $loop->last ? '' : ', ' }}
+                            @endforeach
+                        </td>
                         <td>
                             <a href="{{ route('admin.posts.show', ['post' => $post]) }}" class="btn btn-primary">More</a>
                         </td>
