@@ -9,7 +9,12 @@ class Post extends Model
 {
     use Slugger;
 
-    public function Category() {
+    public function category() {
         return $this->belongsTo('App\Category');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

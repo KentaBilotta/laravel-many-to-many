@@ -4,12 +4,12 @@
     <div class="container">
         @if (session('success_delete'))
             <div class="alert alert-warning" role="alert">
-                Category {{ session('success_delete')->name }} deleted successfully
+                Category "{{ session('success_delete')->name }}" deleted successfully
             </div>
         @endif
 
         <h1>Categories</h1>
-        
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -35,7 +35,7 @@
                             <button class="btn btn-danger btn-delete-me" data-id="{{ $category->id }}">Delete</button>
                         </td> --}}
                         <td>
-                            <form action="{{ route('admin.categories.destroy', ['category' => $category]) }}" method="category">
+                            <form action="{{ route('admin.categories.destroy', ['category' => $category]) }}" method="post">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger btn-delete-me">Delete</button>

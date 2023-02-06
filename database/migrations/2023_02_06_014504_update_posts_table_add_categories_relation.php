@@ -15,12 +15,13 @@ class UpdatePostsTableAddCategoriesRelation extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             // colonna della chiave esterna (foreign key)
-            $table->unsignedBigInteger('category_id')->after('id')->default(1);
+            $table->unsignedBigInteger('category_id')->after('id')->nullable();
 
             // relazione tra tabelle
             $table->foreign('category_id')
                 ->references('id')
-                ->on('categories');
+                ->on('categories')
+                ->onDelete('set null');
         });
     }
 

@@ -23,7 +23,7 @@
                         <th scope="row">{{ $post->id }}</th>
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->title }}</td>
-                        <td>{{ $post->category->name }}</td>
+                        <td>{{ $post->category->name ?? '' }}</td>
                         <td>
                             <a href="{{ route('admin.posts.show', ['post' => $post]) }}" class="btn btn-primary">More</a>
                         </td>
