@@ -5074,6 +5074,26 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime
 //     el: '#app',
 // });
 
+var inputTitle = document.querySelector('[data-sluger=title]');
+var inputSlug = document.querySelector('[data-sluger=slug]');
+var btnGetSlug = document.querySelector('[data-sluger=button]');
+if (inputTitle && inputSlug && btnGetSlug) {
+  var getSlug = function getSlug(title) {
+    var slug;
+    axios.get('/admin/categories/slug?title=' + title).then(function (response) {
+      return inputSlug.value = response.data.slug;
+    });
+  };
+  inputTitle.addEventListener('focusout', function () {
+    if (inputSlug.value === '') {
+      getSlug(inputTitle.value);
+    }
+  });
+  btnGetSlug.addEventListener('click', function () {
+    getSlug(inputTitle.value);
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

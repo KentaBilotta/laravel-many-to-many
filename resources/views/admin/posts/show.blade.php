@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="text-capitalize">{{ $post->title }}</h1>
     @if (isset($post->category->name))
-        <h2>Category: {{ $post->category->name }}</h2>
+        <h2>Category: <a href="{{ route('admin.categories.show', ['category' => $post->category]) }}">{{ $post->category->name }}</a></h2>
     @endif
     @if ($post->tags)
         <h3>

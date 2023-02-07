@@ -24,7 +24,11 @@
                         <th scope="row">{{ $post->id }}</th>
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->title }}</td>
-                        <td>{{ $post->category->name ?? '' }}</td>
+                        <td>
+                            @if ($post->category)
+                                <a href="{{ route('admin.categories.show', ['category' => $post->category]) }}">{{ $post->category->name }}</a>
+                            @endif
+                        </td>
                         <td>
                             @foreach ($post->tags as $tag)
                                 {{ $tag->name }}{{ $loop->last ? '' : ', ' }}
